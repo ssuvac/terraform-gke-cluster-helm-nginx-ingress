@@ -2,6 +2,7 @@ stages:
   - plan
   - apply
 
+
 # hidden jobs
 .common:
   image: 
