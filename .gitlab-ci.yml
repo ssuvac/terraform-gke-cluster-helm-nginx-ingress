@@ -1,0 +1,65 @@
+stages:
+  - plan
+  - apply
+
+
+# hidden jobs
+.common:
+  image: 
+    name: hashicorp/terraform:0.14.2
+    entrypoint: [""]
+  when: manual
+  before_script:
+    - cd $ENV_NAME
+    - terraform init -input=false
+
+.plan:
+  extends: .common
+  stage: plan
+  script:
+    - terraform plan -out $ENV_NAME.plan -input=false
+  artifacts:
+    expire_in: 1 day
+    paths:
+      - $ENV_NAME/$ENV_NAME.plan
+
+.apply:
+  extends: .common
+  stage: apply
+  script:
+    - terraform apply -input=false $ENV_NAME.plan
+
+
+# dev
+.dev:
+  variables:
+    ENV_NAME: dev
+
+dev plan:
+  extends:
+    - .plan
+    - .dev
+  
+dev apply:
+  extends:
+    - .apply
+    - .dev
+  dependencies:
+    - dev plan
+
+# prod
+.prod:
+  variables:
+    ENV_NAME: prod
+
+prod plan:
+  extends:
+    - .plan
+    - .prod
+  
+prod apply:
+  extends:
+    - .apply
+    - .prod
+  dependencies:
+    - prod plan

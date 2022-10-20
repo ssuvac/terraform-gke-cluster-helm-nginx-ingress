@@ -97,18 +97,37 @@ resource "helm_release" "nginx_ingress" {
 }
 
 
-
-
 ##############
-##############     Kube-Prometheus-Stack
+##############     Prometheus
 ##############
-resource "kubernetes_namespace" "monitoring" {
+resource "kubernetes_namespace" "prometheus" {
   metadata {
     name = var.namespace
   }
 }
 
 
+resource "helm_release" "prometheus" {
+  chart      = "prometheus"
+  name       = "prometheus"
+  namespace  = var.namespace
+  repository = "https://prometheus-community.github.io/helm-charts"
+
+  set {
+    name  = "podSecurityPolicy.enabled"
+    value = true
+  }
+
+  set {
+    name  = "server.persistentVolume.enabled"
+    value = false
+  }
+}
+
+
+##############
+##############     Grafana
+##############
 resource "helm_release" "kube_prometheus_stack" {
   name = var.helm_release
 
