@@ -1,1 +1,2 @@
 # terraform-gke-cluster-helm-nginx-ingress
+### Simple "Terraform" infrastructure to create a GKE cluster and deploying "nginx ingress controller" plus "Kube Prometheus Stack", composed of "Prometheus" and "Grafana"
