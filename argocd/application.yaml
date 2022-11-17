@@ -13,6 +13,6 @@ server:
         server: https://kubernetes.default.svc
         namespace: example-app
       syncPolicy:
-        automated:
+        automated: 
           prune: false
           selfHeal: false
