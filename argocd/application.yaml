@@ -1,0 +1,22 @@
+server:
+  additionalApplications:
+   - name: cluster-config
+     namespace: argocd
+     project: default
+     source:
+       repoURL: https://github.com/ssuvac/terraform-gke-cluster-helm-nginx-ingress.git
+       targetRevision: HEAD
+       path: argocd/example-app
+       directory:
+         recurse: true
+     destination:
+       server: https://kubernetes.default.svc
+     syncPolicy:
+       automated:
+         prune: false
+         selfHeal: false
+       syncOptions:
+        - CreateNamespace=true
+
+
+
