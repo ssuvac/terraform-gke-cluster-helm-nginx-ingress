@@ -1,18 +1,18 @@
 server:
   additionalApplications:
-   - name: example-app
-     namespace: example-app
-     project: default
-     source:
-       repoURL: https://github.com/ssuvac/terraform-gke-cluster-helm-nginx-ingress.git
-       targetRevision: HEAD
-       path: argocd/example-app
-       directory:
-         recurse: true
-     destination:
-       server: https://kubernetes.default.svc
-       namespace: example-app
-     syncPolicy:
-       automated:
-         prune: false
-         selfHeal: false
+    - name: cluster-config
+      namespace: argocd
+      project: default
+      source:
+        repoURL: https://github.com/ssuvac/terraform-gke-cluster-helm-nginx-ingress.git
+        targetRevision: HEAD
+        path: argocd/example-app
+        directory:
+          recurse: true
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: example-app
+      syncPolicy:
+        automated:
+          prune: false
+          selfHeal: false
