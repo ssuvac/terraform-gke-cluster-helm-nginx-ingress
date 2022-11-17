@@ -107,6 +107,11 @@ resource "kubernetes_namespace" "monitoring" {
   }
 }
 
+resource "kubernetes_namespace" "example-app" {
+  metadata {
+    name = "example-app"
+  }
+}
 
 
 resource "helm_release" "kube_prometheus_stack" {
