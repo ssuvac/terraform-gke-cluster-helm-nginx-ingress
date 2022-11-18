@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
       - name: example-app
-        image: aimvector/python:1.0.1
+        image: gitlab.devebs.net:4567/kwg/main-api/development:1.0.686-development
         imagePullPolicy: Always
         ports:
         - containerPort: 5000
