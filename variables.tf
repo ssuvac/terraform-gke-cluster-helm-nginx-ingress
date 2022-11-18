@@ -74,3 +74,36 @@ variable "namespace" {
     default = "monitoring"
   
 }
+
+
+#########################################################################
+variable "gitlab_project_id" {
+  type = string
+}
+
+variable "gitlab_username" {
+  type = string
+}
+
+variable "gitlab_password" {
+  type = string
+}
+
+variable "agent_name" {
+  type = string
+}
+
+variable "token_name" {
+  type    = string
+  default = "kas-token"
+}
+
+variable "token_description" {
+  type    = string
+  default = "Token for KAS Agent Authentication"
+}
+
+variable "gitlab_graphql_api_url" {
+  type    = string
+  default = "https://gitlab.com/api/graphql"
+}
