@@ -23,20 +23,3 @@ provider "helm" {
 
   }
 }
-
-provider "gitlab" {
-    token = var.gitlab_password
-}
-
-module "gitlab_kubernetes_agent_registration" {
-  source = "gitlab.com/gitlab-org/kubernetes-agent-terraform-register-agent/local"
-  version = "0.0.2"
-
-  gitlab_project_id = var.gitlab_project_id
-  gitlab_username = var.gitlab_username
-  gitlab_password = var.gitlab_password
-  gitlab_graphql_api_url = var.gitlab_graphql_api_url
-  agent_name = var.agent_name
-  token_name = var.token_name
-  token_description = var.token_description
-}

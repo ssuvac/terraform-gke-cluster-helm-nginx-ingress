@@ -1,4 +1,4 @@
-gcp_credentials = "intense-agency-364605-6e38e667accd.json"
+gcp_credentials = "intense-agency-364605-aa9b85dfd354.json"
 gcp_project_id = "intense-agency-364605"
 gcp_region = "us-central1"
 gke_zones = [ "us-central1" ]
